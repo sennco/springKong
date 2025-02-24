@@ -19,6 +19,7 @@ public String getLivro() {
 
 @PostMapping("/")
 public void createLivro(@RequestBody LivroModel livroModel) {
-     System.out.println(livroModel.titulo);
+     System.out.println(livroModel.getTitulo());
+    
     }
 }
