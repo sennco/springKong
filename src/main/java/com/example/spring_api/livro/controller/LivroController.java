@@ -9,6 +9,7 @@ import com.example.spring_api.autor.repository.IAutorRepository;
 import com.example.spring_api.livro.model.LivroModel;
 import com.example.spring_api.livro.repository.ILivroRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -21,28 +22,46 @@ public class LivroController {
     @Autowired
     private IAutorRepository autorRepository;
 
-    @GetMapping("/")
-    public String getLivro() {
-        return "Get Livro";
-    }
-
+  
     @PostMapping("/")
     public ResponseEntity<?> createLivro(@PathVariable String numero, @RequestBody LivroModel livroModel) {
-        // Buscar o autor pelo número
+       
         Optional<AutorModel> autorOptional = autorRepository.findByNumero(numero);
 
-        // Verificar se o autor existe
+       
         if (autorOptional.isEmpty()) {
             return ResponseEntity.status(404).body("Autor não encontrado.");
         }
 
-        // Associar o autor ao livro
+      
         livroModel.setAutor(autorOptional.get());
 
-        // Salvar o livro
+    
         LivroModel livroCreated = livroRepository.save(livroModel);
 
-        // Retornar a resposta com o livro criado
+  
         return ResponseEntity.status(201).body(livroCreated);
+    }
+
+
+    @GetMapping("/")
+    public ResponseEntity<?> getLivrosByAutor(@PathVariable String numero) {
+     
+        Optional<AutorModel> autorOptional = autorRepository.findByNumero(numero);
+
+     
+        if (autorOptional.isEmpty()) {
+            return ResponseEntity.status(404).body("Autor não encontrado.");
+        }
+
+   
+        List<LivroModel> livros = livroRepository.findByAutor(autorOptional.get());
+
+      
+        if (livros.isEmpty()) {
+            return ResponseEntity.status(404).body("Autor não possui livros cadastrados.");
+        }
+
+        return ResponseEntity.ok(livros);  
     }
 }
