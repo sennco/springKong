@@ -64,9 +64,6 @@ GET /api/v1/autor/{numero}/livro/
 
 ---
 
-Agora sua API está pronta para ser utilizada!
-
-posso usar isso como readme ?
 
 
 
