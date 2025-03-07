@@ -62,8 +62,22 @@ GET /api/v1/autor/
 GET /api/v1/autor/{numero}/livro/
 ```
 
+## Rota no Postman via Kong
+
+Na **collection** do **Postman**, dentro da pasta **"Kong"**, existe uma requisição **GET** para:
+
+```
+http://localhost:8000/api/v1/autor/12
+```
+
+Essa requisição retorna os dados do autor **sem o campo `id`**.
+
+Para autenticação, utilize o cabeçalho:
+
+```
+Key: apikey
+Value: SUA_CHAVE_GERADA
+```
+
 ---
-
-
-
 
