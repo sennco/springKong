@@ -33,7 +33,7 @@ O H2 Database está configurado para rodar em memória. Para acessar o console:
    http://localhost:8080/h2-console
    ```
 3. Use as seguintes credenciais:
-   - **JDBC URL**: `jdbc:h2:mem:testdb`
+   - **JDBC URL**: `jdbc:h2:mem:apikong`
    - **Usuário**: `sa`
    - **Senha**: `sa`
 
